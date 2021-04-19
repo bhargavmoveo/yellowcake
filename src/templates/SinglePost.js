@@ -6,6 +6,7 @@ import { ChevronLeft } from 'react-feather'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
 import './SinglePost.css'
+import TagPreview from "../components/tagWidget/TagPreview"
 
 export const SinglePostTemplate = ({
   title,
@@ -13,8 +14,10 @@ export const SinglePostTemplate = ({
   body,
   nextPostURL,
   prevPostURL,
-  categories = []
-}) => (
+  categories = [],
+  tags,
+}) => {  
+  return (
   <main>
     <article
       className="SinglePost section light"
@@ -25,6 +28,7 @@ export const SinglePostTemplate = ({
         <Link className="SinglePost--BackButton" to="/blog/">
           <ChevronLeft /> BACK
         </Link>
+        <TagPreview value={tags}/>
         <div className="SinglePost--Content relative">
           <div className="SinglePost--Meta">
             {date && (
@@ -85,7 +89,8 @@ export const SinglePostTemplate = ({
       </div>
     </article>
   </main>
-)
+  )
+}
 
 // Export Default SinglePost for front-end
 const SinglePost = ({ data: { post, allPosts } }) => {
@@ -126,6 +131,7 @@ export const pageQuery = graphql`
         categories {
           category
         }
+        tags
       }
     }
 

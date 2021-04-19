@@ -1,5 +1,6 @@
 import React from 'react'
 import CMS from 'netlify-cms-app'
+import { TagControl, TagPreview } from '../components/tagWidget';
 import './cms-utils'
 
 import { HomePageTemplate } from '../templates/HomePage'
@@ -11,6 +12,7 @@ import { SinglePostTemplate } from '../templates/SinglePost'
 import uploadcare from 'netlify-cms-media-library-uploadcare'
 
 CMS.registerMediaLibrary(uploadcare)
+CMS.registerWidget('tags', TagControl, TagPreview)
 
 if (
   window.location.hostname === 'localhost' &&
